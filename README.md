@@ -18,7 +18,8 @@ export KUBECONFIG=$(kind get kubeconfig-path)
 kubectl version
 kubectl get po -A
 # 部署 Ingress 控制器会使访问更方便，如果你的 k8s 集群已经有 Ingress 或者想用 NodePort 则可以跳过
-kubectl apply -f https://github.com/zhangsean/prow-quickstart/traefik-ds.yaml?raw=
+# 以下 Traefik Ingress Controller 中启用了默认 https 协议，替换111.22.3.4成你的主机IP即可访问 http://traefik.主机IP.nip.io 查看 Traefik 控制界面
+curl -sSL https://github.com/zhangsean/prow-quickstart/blob/master/traefik-ds.yaml?raw= | sed 's|192.168.64.10|111.22.3.4|g' | kubectl apply -f -
 ```
 
 ## 准备一个 Github 机器人账号
